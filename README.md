@@ -1,5 +1,7 @@
 # Numo (repositorio principal)
 
+![Logo Numo](numo.png)
+
 Este repositorio serve como ponto central de documentacao do projeto Numo.
 Cada posta/modulo esta em um repositorio separado e este repo agrega contexto,
 visao geral e links para cada parte do sistema.
