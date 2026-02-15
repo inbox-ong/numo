@@ -2,6 +2,7 @@
 
 ### Responsabilidade
 - Frontend administrativo (Next.js).
+- Interface visual que consome o backend do `numoAdmin`.
 
 ### Estado atual
 - Interface do painel Admin.

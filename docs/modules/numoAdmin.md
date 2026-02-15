@@ -1,7 +1,8 @@
 ## numoAdmin
 
 ### Responsabilidade
-- Painel administrativo e proxy.
+- Backend administrativo e proxy para servicos internos.
+- Centraliza auth, auditoria e integracoes operacionais.
 
 ### Estado atual (roadmap 0.1)
 - TailAdmin com backend Node.
@@ -15,7 +16,7 @@
 
 ### Dependencias
 - **Core/Keys/Directory/Ledger/Trust** via proxy.
-- **Auth** para RBAC.
+- **Auth** para RBAC e sessao.
 
 ### Dados
 - Auditoria e configuracoes administrativas.
