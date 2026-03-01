@@ -1,0 +1,523 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;700&display=swap');
+
+:root {
+    /* Notion-like Light Mode Palette */
+    --primary: #0f172a;
+    /* Deep Slate / Almost Black */
+    --secondary: #37352f;
+    --dark: #000000;
+    --darker: #ffffff;
+    /* Background is now white */
+    --light: #37352f;
+    /* Text color */
+    --gray: #6b7280;
+    /* Subtle text/meta */
+    --border: #e2e8f0;
+    /* Extremely subtle borders */
+    --glass: #ffffff;
+    --glass-border: #e2e8f0;
+    --mono: 'JetBrains Mono', monospace;
+    --code-bg: #f8fafc;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif;
+    background-color: var(--darker);
+    color: var(--light);
+    line-height: 1.7;
+    /* Increased for better scannability */
+    overflow-x: hidden;
+}
+
+.container {
+    max-width: 900px;
+    /* Closer to typical Notion block width */
+    margin: 0 auto;
+    padding: 0 2rem;
+}
+
+header {
+    padding: 1.5rem 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid var(--border);
+    position: sticky;
+    top: 0;
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(5px);
+    z-index: 100;
+}
+
+.logo {
+    font-family: var(--mono);
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: var(--primary);
+    letter-spacing: -0.5px;
+}
+
+/* Desktop/Global Nav styling merged below */
+
+.hero {
+    padding: 5rem 0 3rem;
+    text-align: left;
+    /* Notion strict left alignment */
+}
+
+.badge {
+    display: inline-block;
+    padding: 0.25rem 0.75rem;
+    background: #f1f5f9;
+    color: var(--secondary);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    font-family: var(--mono);
+    font-size: 0.75rem;
+    margin-bottom: 1.5rem;
+    font-weight: 600;
+}
+
+h1 {
+    font-size: 4rem;
+    font-weight: 800;
+    line-height: 1.1;
+    margin-bottom: 1.5rem;
+    letter-spacing: -1.5px;
+    color: var(--primary);
+}
+
+.hero p {
+    font-size: 1.25rem;
+    color: var(--gray);
+    max-width: 800px;
+    margin: 0 0 3rem;
+    /* Removed auto margin for left align */
+    line-height: 1.6;
+}
+
+.cta-actions {
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+    flex-wrap: wrap;
+    /* Fixes mobile overflow */
+    justify-content: flex-start;
+    /* Notion strict left alignment */
+}
+
+.responsive-grid-2 {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+    align-items: start;
+}
+
+.btn {
+    display: inline-block;
+    padding: 0.8rem 1.5rem;
+    border-radius: 6px;
+    font-weight: 500;
+    text-decoration: none;
+    font-family: 'Inter', sans-serif;
+    font-size: 0.95rem;
+    transition: all 0.2s ease;
+    cursor: pointer;
+    border: 1px solid transparent;
+}
+
+.btn-primary {
+    background: var(--primary);
+    color: #ffffff;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+}
+
+.btn-primary:hover {
+    background: #334155;
+}
+
+.grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+    margin-top: 5rem;
+}
+
+.card {
+    background: #ffffff;
+    border: 1px solid var(--border);
+    padding: 2.5rem;
+    border-radius: 8px;
+    transition: box-shadow 0.2s ease;
+    position: relative;
+    overflow: hidden;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.02);
+}
+
+.card:hover {
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+}
+
+.card h3 {
+    font-family: 'Inter', sans-serif;
+    font-weight: 600;
+    font-size: 1.25rem;
+    margin-bottom: 1rem;
+    color: var(--primary);
+    letter-spacing: -0.3px;
+}
+
+.card p {
+    color: var(--gray);
+    font-size: 0.95rem;
+}
+
+.tech-tag {
+    display: inline-block;
+    margin-top: 1.5rem;
+    font-family: var(--mono);
+    font-size: 0.75rem;
+    color: var(--gray);
+    background: var(--code-bg);
+    padding: 0.2rem 0.5rem;
+    border-radius: 4px;
+    border: 1px solid var(--border);
+}
+
+footer {
+    padding: 4rem 0 2rem;
+    text-align: center;
+    border-top: 1px solid var(--border);
+    margin-top: 8rem;
+    color: var(--gray);
+    font-size: 0.85rem;
+}
+
+.lang-switch {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+    margin-top: 2rem;
+    font-family: 'Inter', sans-serif;
+    font-size: 0.85rem;
+}
+
+.lang-switch a {
+    color: var(--gray);
+    text-decoration: none;
+    padding: 0.3rem 0.8rem;
+    border-radius: 4px;
+    transition: all 0.2s ease;
+}
+
+.lang-switch a:hover {
+    background: #f1f5f9;
+    color: var(--primary);
+}
+
+.lang-switch a.active {
+    color: var(--primary);
+    background: #f1f5f9;
+    font-weight: 500;
+}
+
+@media (max-width: 768px) {
+    h1 {
+        font-size: 2.5rem;
+    }
+
+    .grid {
+        grid-template-columns: 1fr;
+    }
+
+    .responsive-grid-2 {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+    }
+
+    .article-container {
+        padding: 3rem 1.5rem 2rem;
+    }
+}
+
+/* --- Long-form Content (Whitepaper & Manifesto) --- */
+.article-container {
+    max-width: 750px;
+    margin: 0 auto;
+    padding: 5rem 1rem 4rem;
+}
+
+.article-header {
+    margin-bottom: 3rem;
+}
+
+.article-header h1 {
+    font-size: 2.5rem;
+    margin-bottom: 0.5rem;
+    text-align: left;
+}
+
+.article-header p {
+    text-align: left;
+    margin-bottom: 2rem;
+}
+
+.article-content {
+    font-size: 1.05rem;
+    line-height: 1.7;
+    color: var(--secondary);
+}
+
+.article-content h2 {
+    font-size: 1.5rem;
+    color: var(--primary);
+    margin: 2.5rem 0 1rem;
+    font-weight: 600;
+    letter-spacing: -0.5px;
+}
+
+.article-content h3 {
+    font-size: 1.25rem;
+    color: var(--primary);
+    margin: 2rem 0 0.8rem;
+    font-weight: 600;
+}
+
+.article-content p {
+    margin-bottom: 1.2rem;
+}
+
+.article-content ul,
+.article-content ol {
+    margin-bottom: 1.2rem;
+    padding-left: 1.5rem;
+}
+
+.article-content li {
+    margin-bottom: 0.4rem;
+}
+
+.article-content a {
+    color: var(--light);
+    text-decoration: underline;
+    text-decoration-color: #cbd5e1;
+    text-underline-offset: 4px;
+    transition: all 0.2s ease;
+}
+
+.article-content a:hover {
+    text-decoration-color: var(--primary);
+}
+
+.quote-block {
+    border-left: 3px solid var(--primary);
+    padding: 1rem 1.5rem;
+    background: #f8fafc;
+    margin: 2rem 0;
+    font-size: 1.15rem;
+    color: var(--primary);
+    border-radius: 0 4px 4px 0;
+}
+
+/* --- Terminal & Code Blocks (Demo Space) --- */
+.terminal {
+    background: #f8fafc;
+    /* Light mode terminal */
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    margin: 2rem 0;
+    overflow: hidden;
+}
+
+.terminal-header {
+    background: #ffffff;
+    padding: 0.5rem 1rem;
+    display: flex;
+    align-items: center;
+    border-bottom: 1px solid var(--border);
+}
+
+.terminal-dots {
+    display: flex;
+    gap: 0.4rem;
+}
+
+.dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+}
+
+.dot.red {
+    background: #cbd5e1;
+}
+
+.dot.yellow {
+    background: #cbd5e1;
+}
+
+.dot.green {
+    background: #cbd5e1;
+}
+
+.terminal-title {
+    margin-left: 1rem;
+    font-family: var(--mono);
+    font-size: 0.75rem;
+    color: var(--gray);
+}
+
+.terminal-body {
+    padding: 1.5rem;
+    font-family: var(--mono);
+    font-size: 0.85rem;
+    color: var(--secondary);
+    line-height: 1.6;
+    overflow-x: auto;
+}
+
+.cmd-prompt {
+    color: var(--gray);
+    font-weight: 700;
+    margin-right: 0.5rem;
+}
+
+.cmd-output {
+    color: var(--gray);
+    margin-top: 0.5rem;
+    margin-bottom: 1rem;
+}
+
+/* --- Navigation (Notion Style Global + Mobile Drawer) --- */
+.menu-toggle {
+    display: none;
+}
+
+nav {
+    position: static;
+    width: auto;
+    height: auto;
+    background: transparent;
+    box-shadow: none;
+    padding: 0;
+    z-index: 1000;
+}
+
+nav ul {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 0.5rem;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+nav ul li a {
+    font-size: 0.95rem;
+    font-weight: 500;
+    text-decoration: none;
+    color: var(--secondary);
+    padding: 0.4rem 0.75rem;
+    border-radius: 6px;
+    transition: all 0.2s ease;
+}
+
+nav ul li a:hover {
+    color: var(--primary);
+    background-color: rgba(0, 0, 0, 0.04);
+}
+
+.menu-overlay {
+    display: none;
+}
+
+/* --- Mobile Navigation (Hamburger & Drawer) --- */
+@media (max-width: 768px) {
+    .menu-toggle {
+        display: flex;
+        flex-direction: column;
+        gap: 5px;
+        cursor: pointer;
+        z-index: 1001;
+    }
+
+    .menu-toggle span {
+        display: block;
+        width: 25px;
+        height: 3px;
+        background-color: var(--primary);
+        border-radius: 3px;
+        transition: transform 0.3s ease, opacity 0.3s ease;
+    }
+
+    .menu-toggle.active span:nth-child(1) {
+        transform: translateY(8px) rotate(45deg);
+    }
+
+    .menu-toggle.active span:nth-child(2) {
+        opacity: 0;
+    }
+
+    .menu-toggle.active span:nth-child(3) {
+        transform: translateY(-8px) rotate(-45deg);
+    }
+
+    nav {
+        position: fixed;
+        top: 0;
+        right: -300px;
+        width: 300px;
+        height: 100vh;
+        background: #ffffff;
+        box-shadow: -4px 0 15px rgba(0, 0, 0, 0.05);
+        transition: right 0.3s ease;
+        padding: 6rem 2.5rem 2rem;
+    }
+
+    nav.active {
+        right: 0;
+    }
+
+    nav ul {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 1.5rem;
+    }
+
+    nav ul li a {
+        font-size: 1.25rem;
+        padding: 0;
+    }
+
+    nav ul li a:hover {
+        background-color: transparent;
+    }
+
+    .menu-overlay {
+        display: block;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100vw;
+        height: 100vh;
+        background: rgba(0, 0, 0, 0.5);
+        z-index: 999;
+        opacity: 0;
+        visibility: hidden;
+        transition: opacity 0.3s ease, visibility 0.3s ease;
+    }
+
+    .menu-overlay.active {
+        opacity: 1;
+        visibility: visible;
+    }
+}

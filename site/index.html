@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Numo - Redirecting...</title>
+    <script>
+        const userLang = navigator.language || navigator.userLanguage;
+        if (userLang.startsWith('pt')) {
+            window.location.href = './pt/index.html';
+        } else if (userLang.startsWith('es')) {
+            window.location.href = './es/index.html';
+        } else {
+            window.location.href = './en/index.html';
+        }
+    </script>
+</head>
+<body>
+    <p>Redirecting to your language... <a href="./en/index.html">Click here if not redirected</a></p>
+</body>
+</html>

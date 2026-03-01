@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="pt">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Numo | Infraestrutura Open Source para Bancos Centrais</title>
+    <link rel="stylesheet" href="../css/style.css">
+</head>
+
+<body>
+    <div class="container">
+        <header>
+            <div class="logo" style="z-index: 1002; position: relative;">
+                <a href="index.html" style="display: flex; align-items: center; text-decoration: none; color: inherit; gap: 0.75rem;">
+                    <img src="../assets/numo.png" alt="NUMO Logo" style="height: 32px; width: auto;">
+                    <span style="font-weight: 700; letter-spacing: -0.5px;">NUMO_CORE</span>
+                </a>
+            </div>
+            <div class="menu-toggle" id="mobile-menu-toggle">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+            <nav id="sidebar-menu">
+                <ul>
+                    <li><a href="community.html">Comunidade</a></li>
+                    <li><a href="whitepaper.html">Whitepaper</a></li>
+                    <li><a href="manifesto.html">Manifesto</a></li>
+                    <li><a href="roadmap.html">Roadmap</a></li>
+                    <li><a href="demo.html">Demo</a></li>
+                    <li><a href="../docs/README.md">Docs API</a></li>
+                </ul>
+            </nav>
+        </header>
+
+        <section class="hero" id="vision">
+            <div class="badge">v0.1 ALPHA</div>
+            <h1>Infraestrutura Pública Digital Open Source</h1>
+            <p>O <em>core</em> soberano para nações emergentes e Bancos Centrais. Um motor modular de liquidação bruta
+                em tempo real (RTGS) e base interoperável para o Sistema Financeiro Nacional.</p>
+            <div style="margin-top: 2rem;">
+                <a href="#modules" class="btn btn-primary" style="margin-right: 1.5rem;">Explorar a Infraestrutura</a>
+                <a href="https://github.com/inbox-ong" target="_blank" class="btn"
+                    style="border: 1px solid var(--border); color: var(--light);">Ver Repositórios</a>
+            </div>
+        </section>
+
+        <section class="hero" id="modules" style="padding: 5rem 0 2rem;">
+            <h2>Módulos do Ecossistema</h2>
+            <p>Conheça os repositórios que compõem a infraestrutura base do Numo, disponíveis no <a
+                    href="https://github.com/orgs/inbox-ong/repositories" style="color: var(--primary);">GitHub</a>.</p>
+        </section>
+
+        <section class="grid" style="margin-top: 2rem;">
+            <div class="card">
+                <h3><a href="https://github.com/inbox-ong/numoCore"
+                        style="color: var(--light); text-decoration: none;">numoCore</a></h3>
+                <p>O motor principal. Valida transações, participantes e saldos, executando a liquidação atômica e
+                    processamento de mensagens ISO 20022.</p>
+                <span class="tech-tag">GO / POSTGRES / GRPC</span>
+            </div>
+            <div class="card">
+                <h3><a href="https://github.com/inbox-ong/numoLedger"
+                        style="color: var(--light); text-decoration: none;">numoLedger</a></h3>
+                <p>O livro-razão financeiro. Registra todas as entradas de débito e crédito de forma imutável,
+                    garantindo balanço em tempo real.</p>
+                <span class="tech-tag">GO / POSTGRES</span>
+            </div>
+            <div class="card">
+                <h3><a href="https://github.com/inbox-ong/numoStream"
+                        style="color: var(--light); text-decoration: none;">numoStream</a></h3>
+                <p>Barramento de eventos que conecta todos os módulos de forma assíncrona, garantindo alta vazão e
+                    resiliência (Event Sourcing).</p>
+                <span class="tech-tag">KAFKA / AVRO</span>
+            </div>
+            <div class="card">
+                <h3><a href="https://github.com/inbox-ong/numoDirectory"
+                        style="color: var(--light); text-decoration: none;">numoDirectory</a></h3>
+                <p>Catálogo oficial de participantes locais e externos autorizados a operar na rede de liquidação.</p>
+                <span class="tech-tag">GO / FASTAPI</span>
+            </div>
+            <div class="card">
+                <h3><a href="https://github.com/inbox-ong/numoKeys"
+                        style="color: var(--light); text-decoration: none;">numoKeys</a></h3>
+                <p>Diretório de endereçamento centralizado. Resolve identificadores flexíveis (telefone, email) com
+                    latência inferior a 10ms.</p>
+                <span class="tech-tag">GO / SCYLLA_DB</span>
+            </div>
+            <div class="card">
+                <h3><a href="https://github.com/inbox-ong/numoTrust"
+                        style="color: var(--light); text-decoration: none;">numoTrust</a></h3>
+                <p>Gestão de identidades (PKI). Emissão dinâmica de certificados sob mTLS 1.3 e integração nativa com
+                    HSM via PKCS#11 e SPIRE.</p>
+                <span class="tech-tag">VAULT / SPIRE</span>
+            </div>
+            <div class="card">
+                <h3><a href="https://github.com/inbox-ong/numoAdmin"
+                        style="color: var(--light); text-decoration: none;">numoAdmin</a></h3>
+                <p>Backend administrativo e API. Fornece as rotas de controle e age como proxy para o frontend
+                    operacional.</p>
+                <span class="tech-tag">NODE.JS / NESTJS</span>
+            </div>
+            <div class="card">
+                <h3><a href="https://github.com/inbox-ong/numoAdmin-next"
+                        style="color: var(--light); text-decoration: none;">numoAdmin-next</a></h3>
+                <p>Dashboard operacional moderno para auditoria de pagamentos, gestão de participantes e monitoramento
+                    do ecossistema.</p>
+                <span class="tech-tag">NEXT.JS / REACT</span>
+            </div>
+        </section>
+
+        <section style="padding: 10rem 0 0; border-top: 1px solid var(--border); margin-top: 5rem;">
+            <div class="responsive-grid-2">
+                <div>
+                    <h2 style="font-size: 3rem; margin-bottom: 2rem;">Arquitetura Soberana</h2>
+                    <p style="color: var(--gray); font-size: 1.1rem; margin-bottom: 2rem;">O Numo atua como a entidade
+                        central (Nó Raiz) concebida para Bancos Centrais e Reguladores. Instituições Financeiras (IFs) e
+                        de Pagamentos (IPs) conectam-se a este motor seguro para transacionar, eliminando a fragmentação
+                        do sistema.</p>
+                    <div style="font-family: var(--mono); font-size: 0.85rem; color: var(--primary);">
+                        > v0.1_alpha_release<br>
+                        > instant_liquidity_provision<br>
+                        > secure_by_default.mtls
+                    </div>
+                </div>
+                <div class="card">
+                    <h3>Visão Open Finance</h3>
+                    <p>A parte central do ecossistema: atuando como repositório de diretórios, conectividade,
+                        monitoramento, governança e indicadores operacionais.</p>
+                    <p style="margin-top: 1rem;">Replicamos os pilares de sucesso de jurisdições avançadas para suportar
+                        a inovação em escala nacional.</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="community-cta" class="hero"
+            style="padding: 10rem 0 8rem; background-color: #f8fafc; margin-top: 5rem; border-top: 1px solid var(--border); border-bottom: 1px solid var(--border);">
+            <div class="badge" style="background: #ffffff;">CULTURA OPEN SOURCE</div>
+            <h2 style="font-size: 3.5rem; margin-bottom: 1.5rem; letter-spacing: -1px;">Construído por
+                Nações.<br>Mantido por Você.</h2>
+            <p style="font-size: 1.25rem; color: var(--gray);  margin-bottom: 2rem; line-height: 1.6;">
+                O Numo não é governado por uma fundação privada ou corporativa. O projeto está sendo estruturado para
+                ser guiado de forma colaborativa por uma <strong>comunidade global transparente</strong>. Procuramos
+                Especialistas Financeiros, Auditores de Segurança e Desenvolvedores C/Rust/Go para auditar o código que
+                movimentará o seu país.
+            </p>
+            <div class="cta-actions">
+                <a href="community.html" class="btn btn-primary" style="padding: 1rem 2rem; font-size: 1.1rem;">Junte-se
+                    à Comunidade</a>
+                <a href="../docs/CODE_OF_CONDUCT.md" class="btn"
+                    style="border: 1px solid var(--border); color: var(--light); padding: 1rem 2rem; font-size: 1.1rem; background: #ffffff;">Ler
+                    Código de Conduta</a>
+            </div>
+
+            <div class="grid"
+                style="margin-top: 5rem; text-align: left;  margin-left: auto; margin-right: auto;">
+                <div class="card" style="background: #ffffff;">
+                    <h3>👨‍💻 Contribuidores (Devs)</h3>
+                    <p>Tem experiência com concorrência pesada (Kafka, gRPC) ou PKI? Veja nossas <em>Good First
+                            Issues</em>.</p>
+                </div>
+                <div class="card" style="background: #ffffff;">
+                    <h3>🏛 Membros (Instituições)</h3>
+                    <p>Testem os payloads ISO 20022 em seus laboratórios locais e ajudem a guiar o roadmap de
+                        compensação.</p>
+                </div>
+                <div class="card" style="background: #ffffff;">
+                    <h3>🛡 Governança Neutra</h3>
+                    <p>Implementaremos modelos rígidos de aprovação para garantir que todo o código root permaneça
+                        absolutamente blindado e neutro.</p>
+                </div>
+            </div>
+        </section>
+
+        <div class="lang-switch">
+            <a href="../en/index.html">EN</a>
+            <a href="index.html" class="active">PT</a>
+            <a href="../es/index.html">ES</a>
+        </div>
+
+        <footer>
+            <div style="font-family: var(--mono); margin-bottom: 2rem; opacity: 0.5;">0xNUMO_INIT_VECTOR</div>
+            <p>&copy; 2026 Projeto Numo. Parte da iniciativa <a href="https://github.com/inbox-ong"
+                    style="color: var(--primary); text-decoration: none;">Inbox-ONG</a>.</p>
+        </footer>
+    </div>
+    <div class="menu-overlay" id="menu-overlay"></div>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const toggle = document.getElementById('mobile-menu-toggle');
+            const nav = document.getElementById('sidebar-menu');
+            const overlay = document.getElementById('menu-overlay');
+
+            function toggleMenu() {
+                toggle.classList.toggle('active');
+                nav.classList.toggle('active');
+                overlay.classList.toggle('active');
+            }
+
+            if (toggle) {
+                toggle.addEventListener('click', toggleMenu);
+                overlay.addEventListener('click', toggleMenu);
+            }
+        });
+    </script>
+</body>
+
+</html>

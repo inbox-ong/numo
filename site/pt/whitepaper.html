@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="pt">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Whitepaper | Numo</title>
+    <link rel="stylesheet" href="../css/style.css">
+</head>
+
+<body>
+    <div class="container">
+        <header>
+            <div class="logo" style="z-index: 1002; position: relative;">
+                <a href="index.html" style="display: flex; align-items: center; text-decoration: none; color: inherit; gap: 0.75rem;">
+                    <img src="../assets/numo.png" alt="NUMO Logo" style="height: 32px; width: auto;">
+                    <span style="font-weight: 700; letter-spacing: -0.5px;">NUMO_CORE</span>
+                </a>
+            </div>
+            <div class="menu-toggle" id="mobile-menu-toggle">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+            <nav id="sidebar-menu">
+                <ul>
+                    <li><a href="community.html">Comunidade</a></li>
+                    <li><a href="whitepaper.html">Whitepaper</a></li>
+                    <li><a href="manifesto.html">Manifesto</a></li>
+                    <li><a href="roadmap.html">Roadmap</a></li>
+                    <li><a href="demo.html">Demo</a></li>
+                    <li><a href="../docs/README.md">Docs API</a></li>
+                </ul>
+            </nav>
+        </header>
+    </div>
+
+    <div class="article-container">
+        <div class="article-header">
+            <div class="badge">TECHNICAL DESIGN</div>
+            <h1>Arquitetura Numo</h1>
+            <p style="color: var(--gray); font-size: 1.2rem;">Modelagem de liquidação (RTGS), Criptografia Zero-Trust e
+                Mensageria ISO 20022.</p>
+        </div>
+
+        <div class="article-content">
+            <h2>1. Resumo Executivo</h2>
+            <p>O Numo é uma Infraestrutura Pública Digital (DPI) baseada em um motor de Liquidação Bruta em Tempo Real
+                (RTGS). Projetado para atuar como o Nó Raiz para Bancos Centrais e Governos, ele orquestra operações
+                atômicas entre instituições financeiras conectadas. Escrito primordialmente em <span
+                    style="font-family: var(--mono); color: var(--primary);">Go</span>, utiliza microsserviços
+                desconectados sincronizados através de barramentos de eventos imutáveis.</p>
+
+            <h2>2. Arquitetura Topológica do Nó Raiz</h2>
+            <p>Sistemas legados de pagamentos nacionais muitas vezes sofrem de estrangulamento de banco de dados e
+                arquiteturas monolíticas. O Numo resolve isso dissociando o processamento do armazenamento definitivo,
+                atuando como um barramento de eventos de alta disponibilidade.</p>
+            <ul>
+                <li><strong>NumoCore (O Motor)</strong>: Microsserviço sem estado (stateless) responsável por ingestar
+                    transações, validar assinaturas criptográficas e verificar regras de negócio (limites, horários).
+                </li>
+                <li><strong>NumoLedger (O Livro-Razão)</strong>: A fonte da verdade financeira. Utiliza bancos de dados
+                    de alta concorrência segregados para assentar liquidações atômicas (débito conta A, crédito conta
+                    B).</li>
+                <li><strong>API Gateway</strong>: A fronteira de contato onde Instituições Financeiras (IFs) e
+                    Instituições de Pagamento (IPs) se conectam.</li>
+                <li><strong>NumoTrust</strong>: O módulo Mestre de Cerimônias (PKI). Responsável pela emissão, renovação
+                    e revogação de certificados digitais para todo o ecossistema.</li>
+            </ul>
+
+            <h2>3. Matriz de Integração (IFs e IPs)</h2>
+            <p>O Numo não possui telas de usuário final (cidadão). O sistema expõe <strong>APIs RESTful e gRPC</strong>
+                para que os core bancários das instituições participantes se conectem ao motor central de compensação do
+                Banco Central.</p>
+            <ul>
+                <li><strong>Participantes Diretos</strong>: Instituições de grande porte que mantêm Conta de Liquidação
+                    diretamente no Banco Central. Integram-se ao barramento principal via mensageria contínua (NATS ou
+                    Kafka).</li>
+                <li><strong>Participantes Indiretos</strong>: Instituições de menor porte que utilizam Participantes
+                    Diretos como liquidantes patrocinadores. A integração e liquidação flui através de <i>gateways</i>
+                    padronizados sob a governança do Numo.</li>
+            </ul>
+
+            <h2>4. Anatomia de uma Liquidação (ISO 20022)</h2>
+            <p>O núcleo adota semântica restrita alinhada à ISO 20022. Uma transferência típica segue um fluxo de
+                liquidação em tempo real (RTGS) com garantias <i>Double-Entry</i>:</p>
+
+            <div class="terminal" style="margin-top: 2rem;">
+                <div class="terminal-header">
+                    <div class="terminal-dots">
+                        <div class="dot red"></div>
+                        <div class="dot yellow"></div>
+                        <div class="dot green"></div>
+                    </div>
+                    <span class="terminal-title">atomic_flow.log</span>
+                </div>
+                <div class="terminal-body">
+                    <span class="cmd-prompt">INIT</span> [Transaction ID: Nx8A91B] pacs.008 (Customer Credit
+                    Transfer)<br>
+                    <span style="color: var(--gray);">[NumoCore] -> Verify Sender Balance (IF_A): OK.</span><br>
+                    <span style="color: var(--gray);">[NumoCore] -> Verify Receiver Limits (IF_B): OK.</span><br>
+                    <span style="color: #ffbd2e;">[Lock] -> Reserving Funds (P1)...</span><br>
+                    <span style="color: var(--primary);">[NumoLedger] -> COMMIT debit IF_A, credit IF_B.</span><br>
+                    [NumoStream] -> Publish pacs.002 (SETTLED) to Subscriptions
+                </div>
+            </div>
+
+            <p style="margin-top: 1rem;">O uso estrito de gramáticas pacs.008, pacs.002 e camt.052 garante
+                compatibilidade nativa (out-of-the-box) com arranjos de pagamentos transfronteiriços.</p>
+
+            <h2>5. Segurança de Nível Estatal (HSM e Zero-Trust)</h2>
+            <p>Para atender exigências militares/governamentais (ex: Open Banking FAPI), a camada de transporte adota um
+                framework Zero-Trust explícito.</p>
+            <p>Toda instituição que se conecta ao Numo requer transporte sob <strong>mTLS 1.3 (TLS Mútuo)</strong>.
+                Certificados utilizam o framework <strong>SPIFFE/SPIRE</strong> com rotação automatizada de chaves de
+                curta duração, lastreadas pelas raízes de confiança mantidas pelo Banco Central em Módulos de Segurança
+                em Hardware (<strong>HSM via PKCS#11</strong>).</p>
+
+            <h2>6. Governança de Dados</h2>
+            <p>Em um sistema DPI moderno, a privacidade é um ativo basal. O Numo processa as transações, mas não
+                centraliza o histórico de consumo individual. O Banco Central mantém a custódia do metadado de
+                liquidação corporativa, enquanto as instituições retêm os detalhes da transação de ponta (<i>edge
+                    execution</i>), impedindo vazamentos centrais de grande escala.</p>
+        </div>
+    </div>
+
+    <div class="container">
+        <footer>
+            <div class="lang-switch" style="margin-top: 0; padding-bottom: 2rem;">
+                <a href="../en/whitepaper.html">EN</a>
+                <a href="whitepaper.html" class="active">PT</a>
+                <a href="../es/whitepaper.html">ES</a>
+            </div>
+            <div style="font-family: var(--mono); margin-bottom: 2rem; opacity: 0.5;">0xNUMO_INIT_VECTOR</div>
+            <p>&copy; 2026 Projeto Numo.</p>
+        </footer>
+    </div>
+    <div class="menu-overlay" id="menu-overlay"></div>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const toggle = document.getElementById('mobile-menu-toggle');
+            const nav = document.getElementById('sidebar-menu');
+            const overlay = document.getElementById('menu-overlay');
+
+            function toggleMenu() {
+                toggle.classList.toggle('active');
+                nav.classList.toggle('active');
+                overlay.classList.toggle('active');
+            }
+
+            if (toggle) {
+                toggle.addEventListener('click', toggleMenu);
+                overlay.addEventListener('click', toggleMenu);
+            }
+        });
+    </script>
+</body>
+
+</html>

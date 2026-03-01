@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Numo | Community</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <style>
+        .community-role {
+            padding: 2.5rem;
+            background: #ffffff;
+            border-radius: 8px;
+            border: 1px solid var(--border);
+            margin-bottom: 2rem;
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+
+        .community-role:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+        }
+
+        .role-header {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .role-icon {
+            font-size: 2rem;
+        }
+
+        .role-title {
+            font-size: 1.5rem;
+            color: var(--primary);
+            font-weight: 700;
+        }
+
+        .cta-banner {
+            background: var(--primary);
+            color: #ffffff;
+            padding: 4rem 2rem;
+            
+            border-radius: 8px;
+            margin-top: 4rem;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <header>
+            <div class="logo" style="z-index: 1002; position: relative;">
+                <a href="index.html" style="display: flex; align-items: center; text-decoration: none; color: inherit; gap: 0.75rem;">
+                    <img src="../assets/numo.png" alt="NUMO Logo" style="height: 32px; width: auto;">
+                    <span style="font-weight: 700; letter-spacing: -0.5px;">NUMO_CORE</span>
+                </a>
+            </div>
+            <div class="menu-toggle" id="mobile-menu-toggle">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+            <nav id="sidebar-menu">
+                <ul>
+                    <li><a href="community.html">Community</a></li>
+                    <li><a href="whitepaper.html">Whitepaper</a></li>
+                    <li><a href="manifesto.html">Manifesto</a></li>
+                    <li><a href="roadmap.html">Roadmap</a></li>
+                    <li><a href="demo.html">Demo</a></li>
+                    <li><a href="../docs/README.md">Docs API</a></li>
+                </ul>
+            </nav>
+        </header>
+
+        <section class="hero" style="padding: 6rem 0 3rem; text-align: left;">
+            <div class="badge">OPEN SOURCE</div>
+            <h1 style="font-size: 3.5rem; margin-bottom: 1.5rem;">Open & Transparent Culture</h1>
+            <p style="font-size: 1.25rem; color: var(--gray);  line-height: 1.6;">
+                Numo is a Digital Public Infrastructure built to sustain national economies. This requires an auditable,
+                meritocratic governance model immune to direct commercial pressures. We base our structural
+                collaboration on global best practices for open communities.
+            </p>
+        </section>
+
+        <section style="margin-top: 2rem;">
+            <h2 style="font-size: 2rem; margin-bottom: 2rem; color: var(--primary);">Our Roles (Contributor Ladder)</h2>
+            <div class="community-role">
+                <div class="role-header">
+                    <span class="role-icon">🏛</span>
+                    <h3 class="role-title">Members (Financial Institutions & Analysts)</h3>
+                </div>
+                <p style="color: var(--gray); font-size: 1.05rem; margin-bottom: 1.5rem; line-height: 1.6;">
+                    Entities that run or monitor the engine. They do not necessarily generate code, but test APIs, issue
+                    ISO 20022 compliance reports, and point out critical demands (Issues).
+                </p>
+                <div style="font-family: var(--mono); font-size: 0.85rem; color: var(--primary);">> Permission: Issue
+                    creation, Functional Proposals, Forum Participation.</div>
+            </div>
+
+            <div class="community-role">
+                <div class="role-header">
+                    <span class="role-icon">👨‍💻</span>
+                    <h3 class="role-title">Contributors (Rust/Go/K8s Engineers)</h3>
+                </div>
+                <p style="color: var(--gray); font-size: 1.05rem; margin-bottom: 1.5rem; line-height: 1.6;">
+                    Those who have functional code merged into the project. They do the heavy lifting: cryptography,
+                    queue processing, HSM integrations, and the operational frontend.
+                </p>
+                <div style="font-family: var(--mono); font-size: 0.85rem; color: var(--primary);">> Permission:
+                    Authorized Code Review, Voting in Board Elections.</div>
+            </div>
+
+            <div class="community-role">
+                <div class="role-header">
+                    <span class="role-icon">🛡</span>
+                    <h3 class="role-title">Core Leaders (Forming)</h3>
+                </div>
+                <p style="color: var(--gray); font-size: 1.05rem; margin-bottom: 1.5rem; line-height: 1.6;">
+                    The technical group responsible for the architectural sanity of the network. They are the
+                    Gatekeepers. In the future, no changes to the core settlement rule (RTGS) will pass to master
+                    without public scrutiny and mandatory review through *Request For Comments (RFC)*.
+                </p>
+                <div style="font-family: var(--mono); font-size: 0.85rem; color: var(--primary);">> Permission:
+                    Write/Merge Request Override, Structural Veto.</div>
+            </div>
+        </section>
+
+        <section style="margin-top: 5rem;">
+            <h2 style="font-size: 2rem; margin-bottom: 1rem; color: var(--primary);">"Zero Tolerance" Code of Conduct
+            </h2>
+            <p
+                style="color: var(--secondary); font-size: 1.1rem;  margin-bottom: 2rem; line-height: 1.7;">
+                We work with the core of national wealth. There is no room for the troll behavior of archaic hacker
+                culture. We demand "Institutional Modesty". Immediate punishments such as locks or "Hard Bans" are
+                applied against any personal attacks or conscious malicious insertions.
+            </p>
+            <a href="../docs/CODE_OF_CONDUCT.md"
+                style="font-weight: 600; color: var(--primary); text-decoration: underline; text-underline-offset: 4px;">Read
+                Full Code of Conduct (GitHub)</a>
+        </section>
+
+        <section class="cta-banner">
+            <h2 style="font-size: 2.5rem; margin-bottom: 1rem; color: #ffffff;">Ready to Code Sovereignty?</h2>
+            <p
+                style="font-size: 1.15rem; color: #e2e8f0; margin-bottom: 2rem; max-width: 600px; margin-left: auto; margin-right: auto;">
+                Access our technical documentation, subscribe to the mailing list for architecture proposals, or tackle
+                your first *Issue*.
+            </p>
+            <div class="cta-actions">
+                <a href="../docs/CONTRIBUTING.md" class="btn"
+                    style="background: #ffffff; color: var(--primary); font-weight: 600;">Engagement Guidelines</a>
+                <a href="https://github.com/inbox-ong" target="_blank" class="btn"
+                    style="border: 1px solid rgba(255,255,255,0.3); color: #ffffff;">View Core Repositories</a>
+            </div>
+        </section>
+
+        <div class="lang-switch" style="margin-top: 5rem;">
+            <a href="community.html" class="active">EN</a>
+            <a href="../pt/community.html">PT</a>
+            <a href="../es/community.html">ES</a>
+        </div>
+
+        <footer>
+            <div style="font-family: var(--mono); margin-bottom: 2rem; opacity: 0.5;">0xNUMO_INIT_VECTOR</div>
+            <p>&copy; 2026 Numo Project. Part of the <a href="https://github.com/inbox-ong"
+                    style="color: var(--primary); text-decoration: none;">Inbox-ONG</a> initiative.</p>
+        </footer>
+    </div>
+    <div class="menu-overlay" id="menu-overlay"></div>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const toggle = document.getElementById('mobile-menu-toggle');
+            const nav = document.getElementById('sidebar-menu');
+            const overlay = document.getElementById('menu-overlay');
+
+            function toggleMenu() {
+                toggle.classList.toggle('active');
+                nav.classList.toggle('active');
+                overlay.classList.toggle('active');
+            }
+
+            if (toggle) {
+                toggle.addEventListener('click', toggleMenu);
+                overlay.addEventListener('click', toggleMenu);
+            }
+        });
+    </script>
+</body>
+
+</html>

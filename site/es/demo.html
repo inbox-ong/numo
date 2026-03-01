@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sandbox y Demo | Numo</title>
+    <link rel="stylesheet" href="../css/style.css">
+</head>
+
+<body>
+    <div class="container">
+        <header>
+            <div class="logo" style="z-index: 1002; position: relative;">
+                <a href="index.html" style="display: flex; align-items: center; text-decoration: none; color: inherit; gap: 0.75rem;">
+                    <img src="../assets/numo.png" alt="NUMO Logo" style="height: 32px; width: auto;">
+                    <span style="font-weight: 700; letter-spacing: -0.5px;">NUMO_CORE</span>
+                </a>
+            </div>
+            <div class="menu-toggle" id="mobile-menu-toggle">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+            <nav id="sidebar-menu">
+                <ul>
+                    <li><a href="community.html">Comunidad y
+                            Gobernanza</a></li>
+                    <li><a href="whitepaper.html">Whitepaper</a></li>
+                    <li><a href="manifesto.html">Manifiesto</a></li>
+                    <li><a href="roadmap.html">Roadmap</a></li>
+                    <li><a href="demo.html">Demo</a></li>
+                    <li><a href="../docs/README.md">Docs API</a></li>
+                </ul>
+            </nav>
+        </header>
+
+        <section class="hero" style="padding: 6rem 0 3rem;">
+            <h1>Hands-on Sandbox</h1>
+            <p>Simule la ejecución de un Nodo Raíz de liquidación nacional en su entorno de desarrollo. Una topología
+                containerizada completa con Docker Compose lista para pruebas con IFs simuladas.</p>
+        </section>
+
+        <div class="article-container" style="padding-top: 0;">
+            <h2>1. Requisitos Previos</h2>
+            <p class="article-content">Numo orquesta servicios pesados como Kafka, PostgreSQL (múltiples instancias) y
+                bases de datos en memoria. Requiere <strong style="color: var(--light);">Docker y Docker Compose
+                    V2</strong>. Se recomiendan 16GB de RAM en la máquina host.</p>
+
+            <h2>2. Ejecutando el Stack Base (Core + Ledger + Stream)</h2>
+            <div class="terminal">
+                <div class="terminal-header">
+                    <div class="terminal-dots">
+                        <div class="dot red"></div>
+                        <div class="dot yellow"></div>
+                        <div class="dot green"></div>
+                    </div>
+                    <span class="terminal-title">~ / developer bash</span>
+                </div>
+                <div class="terminal-body">
+                    <span class="cmd-prompt">$</span> git clone https://github.com/inbox-ong/numoCore<br>
+                    <span class="cmd-prompt">$</span> cd numoCore<br>
+                    <span class="cmd-prompt">$</span> docker-compose up -d<br>
+                    <br>
+                    <span class="cmd-output">
+                        [+] Running 5/5<br>
+                        ✔ Container numocore-zookeeper-1 Started<br>
+                        ✔ Container numocore-kafka-1 Started<br>
+                        ✔ Container numocore-postgres-1 Started<br>
+                        ✔ Container numocore-redis-1 Started<br>
+                        ✔ Container numocore-api-1 Started
+                    </span>
+                    <span class="cmd-prompt">$</span> docker ps --format "table {{.Names}}\t{{.Ports}}"
+                </div>
+            </div>
+
+            <h2>3. APIs Operativas</h2>
+            <p class="article-content" style="margin-bottom: 1.5rem;">Con el núcleo en ejecución, la API de liquidación
+                (`numoCore`) estará disponible en <code>localhost:8080</code>. Puede enviar lotes de mensajes ISO JSON.
+            </p>
+
+            <div class="terminal">
+                <div class="terminal-header">
+                    <div class="terminal-dots">
+                        <div class="dot red"></div>
+                        <div class="dot yellow"></div>
+                        <div class="dot green"></div>
+                    </div>
+                    <span class="terminal-title">curl - HTTP POST pacs.008</span>
+                </div>
+                <div class="terminal-body">
+                    <span class="cmd-prompt">$</span> curl -X POST http://localhost:8080/v1/settle \<br>
+                    &nbsp;&nbsp;&nbsp;-H "Content-Type: application/json" \<br>
+                    &nbsp;&nbsp;&nbsp;-d
+                    '{"msg_id":"MSG123","sender":"BANK_A","receiver":"BANK_B","amount":1500.00}'<br>
+                    <br>
+                    <span style="color: var(--primary);">{"status":"processing", "tx_id":"NX-A91B-2026"}</span>
+                </div>
+            </div>
+
+            <h2>4. Explorando la Interfaz (Próximamente)</h2>
+            <p class="article-content">El repositorio `numoAdmin-next` contiene la interfaz gráfica administrativa donde
+                puede visualizar el bus en la práctica. Ejecútelo en paralelo.</p>
+        </div>
+    </div>
+
+    <div class="container">
+        <footer>
+            <div class="lang-switch" style="margin-top: 0; padding-bottom: 2rem;">
+                <a href="../en/demo.html">EN</a>
+                <a href="../pt/demo.html">PT</a>
+                <a href="demo.html" class="active">ES</a>
+            </div>
+            <div style="font-family: var(--mono); margin-bottom: 2rem; opacity: 0.5;">0xNUMO_INIT_VECTOR</div>
+            <p>&copy; 2026 Proyecto Numo.</p>
+        </footer>
+    </div>
+    <div class="menu-overlay" id="menu-overlay"></div>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const toggle = document.getElementById('mobile-menu-toggle');
+            const nav = document.getElementById('sidebar-menu');
+            const overlay = document.getElementById('menu-overlay');
+
+            function toggleMenu() {
+                toggle.classList.toggle('active');
+                nav.classList.toggle('active');
+                overlay.classList.toggle('active');
+            }
+
+            if (toggle) {
+                toggle.addEventListener('click', toggleMenu);
+                overlay.addEventListener('click', toggleMenu);
+            }
+        });
+    </script>
+</body>
+
+</html>
